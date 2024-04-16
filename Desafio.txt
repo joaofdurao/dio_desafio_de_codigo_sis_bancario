@@ -14,7 +14,7 @@ Para a primeira versão do sistema devemos implementar apenas 3 operações: dep
     OK Todos os saques devem ser armazenados em uma variável e exibidos na operação de extrato.
 
 3- Extrato:
-    Essa operação deve listar todos os depósitos e saques realizados na conta. 
+    OK Essa operação deve listar todos os depósitos e saques realizados na conta. 
     No fim da listagem deve ser exibido o saldo atual da conta. 
     Se o extrato estiver em branco, exibir a mensagem:  Não foram realizadas movimentações.
     Os valores devem ser exibidos utilizando o formato R$ xxx.xx, exemplo:
