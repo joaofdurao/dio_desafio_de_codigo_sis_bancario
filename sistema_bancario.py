@@ -1,7 +1,6 @@
 import logging
 from operator import index
 
-
 lista_clientes = []
 cliente_ativo = None
 lista_contas = []

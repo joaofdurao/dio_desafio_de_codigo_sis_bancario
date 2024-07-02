@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "nome": "Joao",
+        "cpf": "123.456.789-00",
+        "dt_nasc": "2000-11-21",
+        "endereco": "Rua 1, 123, Bairro 1, Cidade 1/UF"
+    },
+    {
+        "id": 2,
+        "nome": "Lucas",
+        "cpf": "123.456.789-00",
+        "dt_nasc": "2000-11-21",
+        "endereco": "Rua 1, 123, Bairro 1, Cidade 1/UF"
+    },
+    {
+        "id": 3,
+        "nome": "Joao",
+        "cpf": "123.456.789-00",
+        "dt_nasc": "2000-11-21",
+        "endereco": "Rua 1, 123, Bairro 1, Cidade 1/UF"
+    }
+]
