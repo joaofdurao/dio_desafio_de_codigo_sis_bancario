@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "agencia": "0001",
+        "nr_conta": "0001",
+        "cliente": {
+            "id": 1,
+            "nome": "Joao",
+            "cpf": "123.456.789-00",
+            "dt_nasc": "2000-11-21",
+            "endereco": "Rua 1, 123, Bairro 1, Cidade 1/UF"
+        },
+        "saldo": 0.0,
+        "limite_qnt_saque": 3,
+        "limite_vlr_saque": 500.0
+    },
+    {
+        "id": 2,
+        "agencia": "0001",
+        "nr_conta": "0002",
+        "cliente": {
+            "id": 1,
+            "nome": "Joao",
+            "cpf": "123.456.789-00",
+            "dt_nasc": "2000-11-21",
+            "endereco": "Rua 1, 123, Bairro 1, Cidade 1/UF"
+        },
+        "saldo": 0.0,
+        "limite_qnt_saque": 3,
+        "limite_vlr_saque": 500.0
+    },
+    {
+        "id": 3,
+        "agencia": "0001",
+        "nr_conta": "0003",
+        "cliente": {
+            "id": 2,
+            "nome": "Lucas",
+            "cpf": "123.456.789-00",
+            "dt_nasc": "2000-11-21",
+            "endereco": "Rua 1, 123, Bairro 1, Cidade 1/UF"
+        },
+        "saldo": 0.0,
+        "limite_qnt_saque": 3,
+        "limite_vlr_saque": 500.0
+    }
+]
