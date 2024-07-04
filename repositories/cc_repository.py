@@ -5,6 +5,7 @@ from repositories.cliente_repository import ClienteRepository
 
 class CcRepository:
     CC_JSON = os.curdir + '\\repositories\\cc_repo.json'
+    # NF_ERROR = NotFoundErr('Conta não encontrada.')
 
     def create_conta_corr(self, conta_corr, id_cliente):
         print('Adicionando conta corrente ao repositório.')
