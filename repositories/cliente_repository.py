@@ -31,19 +31,6 @@ class ClienteRepository:
             print(f'Erro no repositorio: {e}')
             return False
 
-    def generate_cliente_id(self):
-        try:
-            with open(self.CLIENTE_JSON, 'r') as arquivo:
-                clientes = json.load(arquivo)
-                if len(clientes) == 0:
-                    return 1
-                else:
-                    return clientes[-1]['id'] + 1
-        except json.decoder.JSONDecodeError:
-            return 1
-        except Exception as e:
-            print(f'Erro no repositorio: {e}')
-
     def find_cliente_by_id(self, id):
         try:
             with open(self.CLIENTE_JSON, 'r') as arquivo:
@@ -63,13 +50,17 @@ class ClienteRepository:
         except Exception as e:
             print(f'Erro no repositorio: {e}')
 
-    def listar_clientes(self):
+    def list_clientes(self):
         try:
             with open(self.CLIENTE_JSON, 'r') as arquivo:
                 clientes = json.load(arquivo)
                 clientes_list = []
                 for cl in clientes:
-                    clientes_list.append(Cliente(cl['id'], cl['nome'], cl['cpf'], cl['dt_nasc'], cl['endereco']))
+                    clientes_list.append(Cliente(cl['id'], 
+                                                 cl['nome'], 
+                                                 cl['cpf'], 
+                                                 cl['dt_nasc'], 
+                                                 cl['endereco']))
                     return clientes_list
 
         except json.decoder.JSONDecodeError:
@@ -77,7 +68,7 @@ class ClienteRepository:
         except Exception as e:
             print(f'Erro no repositorio: {e}')   
 
-    def atualizar_cliente(self, id, cliente):
+    def update_cliente(self, id, cliente):
         try:
             updated_cliente = self.find_cliente_by_id(id)
             if updated_cliente:
@@ -108,7 +99,7 @@ class ClienteRepository:
             print(f'Erro no repositorio: {e}')
             return False
     
-    def deletar_cliente(self, id):
+    def delete_cliente(self, id):
         try:
             with open(self.CLIENTE_JSON, 'r+') as arquivo:
                 clientes = json.load(arquivo)
@@ -125,7 +116,20 @@ class ClienteRepository:
             print(f'Erro no repositorio: {e}')
             return False
     
-    def valida_cliente_cpf(self, cpf):
+    def generate_cliente_id(self):
+        try:
+            with open(self.CLIENTE_JSON, 'r') as arquivo:
+                clientes = json.load(arquivo)
+                if len(clientes) == 0:
+                    return 1
+                else:
+                    return clientes[-1]['id'] + 1
+        except json.decoder.JSONDecodeError:
+            return 1
+        except Exception as e:
+            print(f'Erro no repositorio: {e}')
+
+    def validate_cliente_cpf(self, cpf):
         try:
             with open(self.CLIENTE_JSON, 'r') as arquivo:
                 clientes = json.load(arquivo)
@@ -136,7 +140,7 @@ class ClienteRepository:
         except Exception:
             return False
         
-    def valida_cliente_senha(self, cpf, senha):
+    def validate_cliente_senha(self, cpf, senha):
         try:
             with open(self.CLIENTE_JSON, 'r') as arquivo:
                 clientes = json.load(arquivo)

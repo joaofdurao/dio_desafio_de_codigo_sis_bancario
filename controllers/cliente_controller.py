@@ -1,26 +1,28 @@
 from models.cliente import Cliente
-from repositories.cliente_repository import ClienteRepository
+from repositories.cliente_repository import ClienteRepository as CRepo
 
 class ClienteController:
 
-    def criar_cliente(self, nome=None, cpf=None, dt_nasc=None, logradouro=None, nr=None, bairro=None, cidade=None, estado=None):
-        endereco = f'{logradouro},{nr},{bairro},{cidade}/{estado}'
-        cliente = Cliente(nome = nome, cpf = cpf, dt_nasc = dt_nasc, endereco = endereco)
+    def criar_cliente(self, nome_cliente, cpf_cliente, dt_nasc_cliente, logradouro_cliente, nr_cliente, bairro_cliente, cidade_cliente, estado_cliente, senha_cliente):
+        endereco_cliente = f'{logradouro_cliente},{nr_cliente},{bairro_cliente},{cidade_cliente}/{estado_cliente}'
+        cliente = Cliente(nome = nome_cliente, cpf = cpf_cliente, dt_nasc = dt_nasc_cliente, endereco = endereco_cliente, senha = senha_cliente)
         
         try: 
-            ClienteRepository().create_cliente(cliente)
+            CRepo.create_cliente(cliente)
             return True  
         except Exception:
             return False
 
-    def obter_cliente(self, nome=None, cpf=None, dt_nasc=None, endereco=None):
+    def encontrar_cliente(self, cliente_id):
+        try:
+            cliente = CRepo.find_cliente_by_id(cliente_id)
+            cliente_dict = cliente.__dict__
+            return cliente_dict
+        except Exception:
+            return False
+
+    def listar_clientes(self):
         
-        
-        
-        for cliente in self.clientes:
-            if cliente["nome"] == nome:
-                return cliente
-        return None
 
     def atualizar_cliente(self, nome, novo_email):
         cliente = self.obter_cliente(nome)
