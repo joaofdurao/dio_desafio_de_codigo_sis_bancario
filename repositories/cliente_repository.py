@@ -7,12 +7,12 @@ class ClienteRepository:
     CLIENTE_JSON = os.curdir + '\\repositories\\clientes_repo.json'
 
     def create_cliente(self, cliente):
-        if self.valida_cliente_cpf(cliente.cpf):
+        if self.validate_cliente_cpf(cliente.cpf):
             print('CPF já cadastrado.')
             return False
         
         new_cliente = cliente
-        new_cliente.id = self.generate_cliente_id()
+        new_cliente.id = self._generate_cliente_id()
 
         try:
             with open(self.CLIENTE_JSON, 'r+') as arquivo:
@@ -68,9 +68,9 @@ class ClienteRepository:
         except Exception as e:
             print(f'Erro no repositorio: {e}')   
 
-    def update_cliente(self, id, cliente):
+    def update_cliente(self, cliente):
         try:
-            updated_cliente = self.find_cliente_by_id(id)
+            updated_cliente = self.find_cliente_by_id(cliente.id)
             if updated_cliente:
                 updated_cliente.nome = cliente.nome
                 updated_cliente.cpf = cliente.cpf
@@ -116,7 +116,7 @@ class ClienteRepository:
             print(f'Erro no repositorio: {e}')
             return False
     
-    def generate_cliente_id(self):
+    def _generate_cliente_id(self):
         try:
             with open(self.CLIENTE_JSON, 'r') as arquivo:
                 clientes = json.load(arquivo)
@@ -129,7 +129,7 @@ class ClienteRepository:
         except Exception as e:
             print(f'Erro no repositorio: {e}')
 
-    def validate_cliente_cpf(self, cpf):
+    def _validate_cliente_cpf(self, cpf):
         try:
             with open(self.CLIENTE_JSON, 'r') as arquivo:
                 clientes = json.load(arquivo)

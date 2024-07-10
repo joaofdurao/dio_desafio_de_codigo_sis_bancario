@@ -22,18 +22,27 @@ class ClienteController:
             return False
 
     def listar_clientes(self):
-        
+        try:
+            clientes = CRepo.list_clientes()
+            clientes_dict = []
+            for i in clientes:
+                clientes_dict.append(i.__dict__)
+            return clientes_dict
+        except Exception:
+            return False
 
-    def atualizar_cliente(self, nome, novo_email):
-        cliente = self.obter_cliente(nome)
-        if cliente:
-            cliente["email"] = novo_email
+    def atualizar_cliente(self, id_cliente, nome_cliente = None, cpf_cliente = None, dt_nasc_cliente = None, logradouro_cliente = None, nr_cliente = None, bairro_cliente = None, cidade_cliente = None, estado_cliente = None, senha_cliente = None):
+        try:
+            endereco_cliente = f'{logradouro_cliente},{nr_cliente},{bairro_cliente},{cidade_cliente}/{estado_cliente}'
+            cliente = Cliente(id = id_cliente, nome = nome_cliente, cpf = cpf_cliente, dt_nasc = dt_nasc_cliente, endereco = endereco_cliente, senha = senha_cliente)
+            CRepo.update_cliente(cliente)
             return True
-        return False
+        except Exception:
+            return False
 
-    def deletar_cliente(self, nome):
-        cliente = self.obter_cliente(nome)
-        if cliente:
-            self.clientes.remove(cliente)
+    def deletar_cliente(self, id_cliente):
+        try:
+            CRepo.delete_cliente(id_cliente)
             return True
-        return False
+        except Exception:
+            return False

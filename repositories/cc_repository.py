@@ -6,12 +6,11 @@ from repositories.cliente_repository import ClienteRepository
 class CcRepository:
     CC_JSON = os.curdir + '\\repositories\\cc_repo.json'
 
-    def create_conta_corr(self, conta_corr, id_cliente):
+    def create_cc(self, conta_corr):
         print('Adicionando conta corrente ao repositório.')
         new_conta_corr = conta_corr
         new_conta_corr.id = self._generate_conta_corr_id()
         new_conta_corr.nr_conta = self._generate_conta_corr_nr_conta()
-        new_conta_corr.cliente = self._select_conta_corr_cliente(id_cliente)
 
         new_cc_dict = new_conta_corr.__dict__
         new_cc_dict['cliente'] = new_cc_dict['cliente'].__dict__
@@ -31,7 +30,7 @@ class CcRepository:
         except Exception as e:
             print(f'Erro no repositório: {e}')
 
-    def find_conta_corr_by_id(self, id):
+    def find_cc_by_id(self, id):
         try:
             with open(self.CC_JSON, 'r') as arquivo:
                 conta_corrs = json.load(arquivo)
@@ -45,7 +44,7 @@ class CcRepository:
         except Exception as e:
             print(f'Erro no repositório: {e}')
 
-    def find_all_contas_corr_by_id_cliente(self, id_cliente):
+    def find_all_ccs_by_id_cliente(self, id_cliente):
         try:
             with open(self.CC_JSON, 'r') as arquivo:
                 conta_corrs = json.load(arquivo)
@@ -58,22 +57,18 @@ class CcRepository:
         except Exception as e:
             print(f'Erro no repositório: {e}')
 
-    def listar_contas_corr(self):
+    def list_ccs(self):
         with open(self.CC_JSON, 'r') as arquivo:
             conta_corrs = json.load(arquivo)
             conta_corrs_list = []
             for conta_corr in conta_corrs:
                 conta_corrs_list.append(ContaCorrente(id =conta_corr['id'], agencia = conta_corr['agencia'], nr_conta = conta_corr['nr_conta'], cliente = conta_corr['cliente'], saldo = conta_corr['saldo'], limite_qnt_saque = conta_corr['limite_qnt_saque'], limite_vlr_saque = conta_corr['limite_vlr_saque']))
             return conta_corrs_list
-        print(conta_corrs_list[0])
 
-    def atualizar_conta_corr(self, id, conta_corr):
+    def update_cc(self, conta_corr):
         try:
-            updated_conta_corr = self.find_conta_corr_by_id(id)
+            updated_conta_corr = self.find_conta_corr_by_id(conta_corr.id)
             if updated_conta_corr:
-                updated_conta_corr.agencia = conta_corr.agencia
-                updated_conta_corr.nr_conta = conta_corr.nr_conta
-                updated_conta_corr.cliente = conta_corr.cliente
                 updated_conta_corr.saldo = conta_corr.saldo
                 updated_conta_corr.limite_qnt_saque = conta_corr.limite_qnt_saque
                 updated_conta_corr.limite_vlr_saque = conta_corr.limite_vlr_saque
